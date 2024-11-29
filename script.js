@@ -23,6 +23,8 @@ const drinkImages = {
     'Tea': 'drinks/Tea.jpg'
 };
 
+const googleScriptUrl = 'https://script.google.com/macros/s/AKfycbydXlWXWBps_zXbKeB1RWoScOmOtdlNiqtOG_06T-ua_Ga48tIjAmG3Y70wTPvFSdYAKw/exec';
+
 const container = document.getElementById('box');
 
 function pageSwitcher(page) {
@@ -201,9 +203,36 @@ function sendEmail() {
 
     emailjs.send(serviceID, templateID, templateParams)
         .then((response) => {
-            console.log = `Email sent! Status: ${response.status}`;
+            console.log(`Email sent! Status: ${response.status}`);
+            recordSubmission();
         })
         .catch((error) => {
-            console.log = `Failed to send email: ${JSON.stringify(error, null, 2)}`;
+            console.log(`Failed to send email: ${JSON.stringify(error, null, 2)}`);
         });
+}
+
+function recordSubmission() {
+    const data = {
+        date: dateInput,
+        time: timeInput,
+        city: cityLocation,
+        location: specificLocation,
+        food: selectedFoods,
+        drink: selectedDrinks
+    };
+
+    fetch(googleScriptUrl, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => response.text())
+    .then(result => {
+        console.log('Submission recorded:', result);
+    })
+    .catch(error => {
+        console.error('Error recording submission:', error);
+    });
 }
