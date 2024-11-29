@@ -95,7 +95,7 @@ button:hover {
     width: 10rem; 
     height: 10rem; 
     border: 1px solid var(--pink);
-    border-radius: 1rem;
+    border-radius: 2rem;
     transition: filter 0.3s;
     filter: grayscale(100%); 
 }
