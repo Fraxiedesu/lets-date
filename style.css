@@ -84,7 +84,7 @@ button:hover {
 
 .card {
     position: relative;
-    transform: translatey(2.5rem);
+    transform: translatey(5rem);
     cursor: pointer;
     z-index: 0;
 }
@@ -92,9 +92,11 @@ button:hover {
 .card-img{
     position: relative;
     z-index: 10;
-    width: 5rem; 
-    height: 5rem; 
-    transition: filter 0.3s;;
+    width: 10rem; 
+    height: 10rem; 
+    border: 1px solid var(--pink);
+    border-radius: 1rem;
+    transition: filter 0.3s;
     filter: grayscale(100%); 
 }
 
@@ -116,7 +118,9 @@ button:hover {
     text-align: center;
     font-size: 0.9rem;
     cursor: pointer;
-    width: 5rem;
+    width: 10rem;
+    color: var(--pink);
+    font-weight: 500;
 }
 
 input[type="date"], 
